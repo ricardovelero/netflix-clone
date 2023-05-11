@@ -6,7 +6,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     if (req.method !== 'GET') return res.status(405).end();
 
     try {
-        await serverAuth(req);
+        await serverAuth(req, res);
 
         const movieCount = await prismadb.movie.count();
         const randomIndex = Math.floor(Math.random() * movieCount);
@@ -20,7 +20,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
 
     } catch (error) {
         console.log(error);
-        return res.status(400).end();
+        return res.status(400).json({ error: `Something went wrong: ${error}` });
         
     }
 }

@@ -29,6 +29,7 @@
     "swr": "^2.1.5",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4",
+    "vercel": "^29.3.0",
     "zustand": "^4.3.8"
   },
   "devDependencies": {

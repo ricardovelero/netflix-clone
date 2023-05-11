@@ -1,12 +1,15 @@
 import React from "react";
 import { BsFillPlayFill } from "react-icons/bs";
 import FavoriteButton from "./favoriteButton";
+import { useRouter } from "next/router";
 
 interface MovieCardProps {
     data: Record<string, any>;
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
+    const router = useRouter();
+
     return (
         <div className="group bg-zinc-900 col-span relative h-[12vw]">
             <img className="
@@ -22,7 +25,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
             w-full
             h-[12vw]
             "
-                src={data.thumbnailUrl} alt="thumbnail" />
+                src={data?.thumbnailUrl} alt="thumbnail" />
             <div className="
                 opacity-0
                 absolute
@@ -50,7 +53,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
                     w-full
                     h-[12vw]
                 "
-                    src={data.thumbnailUrl} alt="Thumbnail" />
+                    src={data?.thumbnailUrl} alt="Thumbnail" />
                 <div className="
                     z-10
                     bg-zinc-800
@@ -63,7 +66,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
                     rounded-b-md
                 ">
                     <div className="flex flex-row items-center gap-3">
-                        <div onClick={() => { }}
+                        <div onClick={() => router.push(`/watch/${data?.id}`)}
                             className="
                             cursor-pointer
                             w-6
@@ -87,10 +90,10 @@ const MovieCard: React.FC<MovieCardProps> = ({ data }) => {
                         New <span className="text-white">2023</span>
                     </p>
                     <div className="flex flex-row mt-4 gap-2 items-center">
-                        <p className="text-white text-[10px] lg:text-sm">{data.duration}</p>
+                        <p className="text-white text-[10px] lg:text-sm">{data?.duration}</p>
                     </div>
                     <div className="flex flex-row mt-4 gap-2 items-center">
-                        <p className="text-white text-[10px] lg:text-sm">{data.genre}</p>
+                        <p className="text-white text-[10px] lg:text-sm">{data?.genre}</p>
                     </div>
                 </div>
             </div>

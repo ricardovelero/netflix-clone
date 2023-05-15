@@ -1,22 +1,22 @@
-import useCurrentUser from "@/hooks/userCurrentUser";
+import useCurrentUser from "@/hooks/useCurrentUser";
 import { NextPageContext } from "next";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
-export async function getServerSideProps(context:NextPageContext) {
-    const session = await getSession(context)
+export async function getServerSideProps(context: NextPageContext) {
+    const session = await getSession(context);
 
     if (!session) {
         return {
             redirect: {
-                destination: '/auth',
+                destination: "/auth",
                 permanent: false,
-            }
-        }
+            },
+        };
     }
     return {
-        props: {}
-    }
+        props: {},
+    };
 }
 
 const Profiles = () => {
@@ -30,7 +30,7 @@ const Profiles = () => {
                     Who is watching?
                 </h1>
                 <div className="flex items-center justify-center gap-8 mt-10">
-                    <div onClick={() => router.push('/')}>
+                    <div onClick={() => router.push("/")}>
                         <div className="group flex-row w-44 mx-auto">
                             <div
                                 className="
@@ -45,9 +45,11 @@ const Profiles = () => {
                                 group-hover:cursor-pointer
                                 group-hover:border-white
                                 overflow-hidden
-                                "
-                            >
-                                <img src="/images/default-slate.png" alt="Profile" />
+                                ">
+                                <img
+                                    src="/images/default-slate.png"
+                                    alt="Profile"
+                                />
                             </div>
                             <div className="mt-4 text-gray-400 text-2xl text-center group-hover:text-white">
                                 {user?.name}
@@ -57,7 +59,7 @@ const Profiles = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 };
 
 export default Profiles;
